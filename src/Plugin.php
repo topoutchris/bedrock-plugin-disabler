@@ -25,13 +25,6 @@ class Plugin
          */
         register_activation_hook($plugin_file, [$this, 'preventPluginActivation']);
 
-        /**
-         * Check if the plugin is installed as a regular plugin.
-         */
-        if (!defined('WPMU_PLUGIN_DIR') || realpath(dirname($plugin_file, 2)) !== realpath(WPMU_PLUGIN_DIR)) {
-            add_action('admin_notices', [$this, 'noticeIsRegularPlugin']);
-        }
-
         add_action('muplugins_loaded', [$this, 'disablePlugins']);
     }
 
